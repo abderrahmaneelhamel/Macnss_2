@@ -97,7 +97,11 @@ public class PatientService {
 
             // Calculate the retirement salary
             double retirementSalary = (pensionRate / 100) * averageSalary;
-
+            if(retirementSalary >= 6000){
+                retirementSalary = 6000;
+            }else if(retirementSalary <= 1000){
+                retirementSalary = 1000;
+            }
             // Update the employee's retirement status and retirement salary in the database
             CompanyDAOImpl.updateRetirementStatusAndSalary(employee.getId(), retirementSalary);
             return retirementSalary;

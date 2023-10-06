@@ -11,15 +11,21 @@ import java.time.LocalDate;
 import java.time.Month;
 
 public class tools {
+    interface Parser {
+        int parse(String text);
+    }
 
-
-    // Try to parse a string to an integer, return 0 if it's not a valid integer
-    public static Integer tryParse(String text) {
+    // Lambda expression to parse a string to an integer, return 0 if not valid
+    private static final Parser TRY_PARSE_INT = (text) -> {
         try {
             return Integer.parseInt(text);
         } catch (NumberFormatException e) {
             return 0;
         }
+    };
+
+    public static int tryParse(String text) {
+        return TRY_PARSE_INT.parse(text);
     }
 
     // Check if an email has a valid format
@@ -64,8 +70,8 @@ public class tools {
         String insertSalaryHistorySQL = "INSERT INTO salary_history (employee_id, salary, date) VALUES (?, ?, ?)";
 
         try (PreparedStatement insertSalaryHistoryStatement = connection.prepareStatement(insertSalaryHistorySQL)) {
-            int employeeId = 56;
-            double salary = 8000.0;
+            int employeeId = 57;
+            double salary = 12000.0;
             LocalDate startDate = LocalDate.of(1990, Month.JANUARY, 1);
 
             for (int i = 0; i < 156; i++) {

@@ -1,5 +1,4 @@
 package macnss.service;
-import macnss.dao.UserDAOImpl;
 import macnss.model.User;
 
 import java.sql.Connection;
